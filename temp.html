@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry My Love 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffb3d9 0%, #ffc9e3 50%, #ffe5f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0;
+            animation: float 4s ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-500px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #e63946;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .message {
+            font-size: 1.2em;
+            color: #555;
+            line-height: 1.8;
+            margin: 30px 0;
+            display: none;
+        }
+
+        .message.active {
+            display: block;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff6b9d 0%, #e63946 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.6);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .emoji {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .final-message {
+            font-size: 1.5em;
+            color: #e63946;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hearts" id="hearts"></div>
+        <div class="content">
+            <div id="step1">
+                <h1>I Need to Tell You Something...</h1>
+                <div class="emoji">😔</div>
+                <button onclick="nextStep(2)">Click Here</button>
+            </div>
+
+            <div id="step2" class="hidden">
+                <h1>I'm Really Sorry</h1>
+                <div class="emoji">💔</div>
+                <div class="message active">
+                    I know my phone was unreachable for a long time, and I didn't tell you beforehand. That was completely my fault.
+                </div>
+                <button onclick="nextStep(3)">Continue...</button>
+            </div>
+
+            <div id="step3" class="hidden">
+                <h1>I Know You Were Worried</h1>
+                <div class="emoji">😢</div>
+                <div class="message active">
+                    I can only imagine how worried you must have been. You didn't know where I was or what happened, and that must have been so scary.
+                </div>
+                <button onclick="nextStep(4)">Keep Going...</button>
+            </div>
+
+            <div id="step4" class="hidden">
+                <h1>You Mean Everything to Me ADUU</h1>
+                <div class="emoji">❤️</div>
+                <div class="message active">
+                    I should have been more considerate. You deserve to know that I'm safe, and I should have let you know before I became unreachable.
+                </div>
+                <button onclick="nextStep(5)">Almost There...</button>
+            </div>
+
+            <div id="step5" class="hidden">
+                <h1>I Promise...</h1>
+                <div class="emoji">🤞</div>
+                <div class="message active">
+                    I promise to always let you know in advance if my phone will be off or unreachable. Your peace of mind is important to me, and I never want to make you worry like this again.
+                </div>
+                <button onclick="nextStep(6)">One More Thing...</button>
+            </div>
+
+            <div id="step6" class="hidden">
+                <h1>Please Forgive Me? 🥺</h1>
+                <div class="emoji">💕</div>
+                <div class="message active">
+                    I know I messed up, but I'm learning and I want to be better for you. You're the most important person in my life.
+                </div>
+                <button onclick="showFinalWithMessage(true)">Click for a Hug</button>
+                <button onclick="nextNotYet(1)">Not Yet...</button>
+            </div>
+
+            <div id="final" class="hidden">
+                <h1>I Love You So Much! 💗</h1>
+                <div class="emoji">🤗💖✨</div>
+                <div class="final-message">
+                    Thank you for being patient with me. I'll do better, I promise! 
+                </div>
+                <div style="margin-top: 30px; font-size: 1.1em; color: #666;">
+                    You're my everything 💕
+                </div>
+                <div id="firstTimeForgive" class="hidden" style="margin-top: 20px; font-size: 1.2em; color: #e63946; font-style: italic;">
+                    I knew you would forgive your Tupatla Sheera 😊💕
+                </div>
+            </div>
+
+            <div id="notYet1" class="hidden">
+                <h1>Please? 🥺</h1>
+                <div class="emoji">😢</div>
+                <div class="message active">
+                    I know I really messed up this time. I understand you're still upset with me, and you have every right to be. I just want you to know how much you mean to me.
+                </div>
+                <button onclick="nextNotYet(2)">Still Not Ready...</button>
+                <button onclick="showFinalWithMessage(false)">Okay, I Forgive You</button>
+            </div>
+
+            <div id="notYet2" class="hidden">
+                <h1>I Really Am Sorry 💔</h1>
+                <div class="emoji">😭</div>
+                <div class="message active">
+                    I can't stop thinking about how worried you must have been. I hate that I caused you pain. You're the best thing in my life, and I never want to take you for granted.
+                </div>
+                <button onclick="nextNotYet(3)">Hmm...</button>
+                <button onclick="showFinalWithMessage(false)">Fine, Come Here</button>
+            </div>
+
+            <div id="notYet3" class="hidden">
+                <h1>Ab Toh Maan Jao Na 🥺</h1>
+                <div class="emoji">🙏💕</div>
+                <div class="message active">
+                    I've said sorry in every way I know how. I promise to be more responsible and keep you informed. You're my world, and I can't bear the thought of you being upset with me. Please? 
+                </div>
+                <button onclick="showFinalWithMessage(false)">Click for a Hug 🤗</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function hideAllSteps() {
+            const allSteps = document.querySelectorAll('[id^="step"], [id="final"], [id^="notYet"]');
+            allSteps.forEach(step => {
+                step.classList.add('hidden');
+            });
+        }
+
+        function nextStep(step) {
+            hideAllSteps();
+            document.getElementById('step' + step).classList.remove('hidden');
+            createHearts();
+        }
+
+        function showFinalWithMessage(isFirstTime) {
+            hideAllSteps();
+            document.getElementById('final').classList.remove('hidden');
+            
+            if (isFirstTime) {
+                document.getElementById('firstTimeForgive').classList.remove('hidden');
+            }
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => createHearts(), i * 200);
+            }
+        }
+
+        function nextNotYet(step) {
+            hideAllSteps();
+            document.getElementById('notYet' + step).classList.remove('hidden');
+            createHearts();
+        }
+
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        setInterval(createHearts, 2000);
+    </script>
+</body>
+</html>
